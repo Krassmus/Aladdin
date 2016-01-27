@@ -90,6 +90,21 @@ class LampController extends PluginController {
         }
     }
 
+    public function vote_action($brainstorm_id)
+    {
+        $this->brainstorm = new Brainstorm($brainstorm_id);
+        if (($GLOBALS['user']->id !== $this->brainstorm['user_id']) && !$GLOBALS['perm']->have_studip_perm("autor", $this->brainstorm['seminar_id'])) {
+            throw new Exception("No rights to vote.");
+        }
+        $this->brainstorm->vote(Request::get("value"));
+
+        $output = array(
+            'html' => $this->render_template_as_string("lamp/_voteable_brainstorm.php")
+        );
+
+        $this->render_json($output);
+    }
+
     private function init()
     {
         // Fetch sidebar
