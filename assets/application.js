@@ -3,6 +3,7 @@ STUDIP.Aladdin = {
     "vote_brainstorm": function () {
         var value = jQuery(this).val();
         var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
+        jQuery(this).closest(".brainstorm").find("nav").css("opacity", "0.5");
         jQuery.ajax({
             "url": STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/vote/" + brainstorm_id,
             "type": "post",
