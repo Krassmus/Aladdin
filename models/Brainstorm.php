@@ -41,11 +41,6 @@ class Brainstorm extends SimpleORMap {
         );
     }
 
-    public function getTypename() {
-        $types = self::getTypes();
-        return $types[$this->type];
-    }
-
     public function getPower() {
         return (int) DBManager::get()->fetchColumn('SELECT SUM(vote) FROM brainstorm_votes WHERE brainstorm_id = ?', array($this->id));
     }
@@ -55,16 +50,10 @@ class Brainstorm extends SimpleORMap {
     }
 
     public function answer($text) {
-        if ($this->allowedToPost()) {
-            return self::create(array(
-                        'range_id' => $this->id,
-                        'text' => $text
-            ));
-        }
-    }
-
-    public function allowedToPost($user_id = null) {
-        return $GLOBALS['perm']->have_studip_perm('autor', $this->range_id, $user_id);
+        return self::create(array(
+                    'range_id' => $this->id,
+                    'text' => $text
+        ));
     }
 
     public function vote($value, $user_id = null) {

@@ -15,7 +15,7 @@
    viewBox="0 0 64 64"
    id="svg2"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="lightning.svg">
+   sodipodi:docname="lightning_red.svg">
   <metadata
      id="metadata13">
     <rdf:RDF>
@@ -24,6 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -43,7 +44,7 @@
      id="namedview9"
      showgrid="false"
      inkscape:zoom="3.6875"
-     inkscape:cx="32"
+     inkscape:cx="6.5084746"
      inkscape:cy="32"
      inkscape:window-x="1524"
      inkscape:window-y="251"
@@ -64,6 +65,6 @@
   <path
      d="M 26.406779,0 10.033898,32 H 26.406779 L 15.491525,64 53.694915,24 H 31.864407 L 48.237288,0 z"
      id="path7"
-     style="fill:#000000"
+     style="fill:#cb1800;fill-opacity:1"
      inkscape:connector-curvature="0" />
 </svg>
