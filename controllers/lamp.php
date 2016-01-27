@@ -110,6 +110,8 @@ class LampController extends PluginController {
         // Fetch sidebar
         $sidebar = Sidebar::Get();
 
+        $sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
+
         // Create actions
         $actions = new ActionsWidget();
         if ($GLOBALS['perm']->have_studip_perm('tutor', Course::findCurrent()->id)) {
