@@ -38,17 +38,21 @@ class LampController extends PluginController {
 
             $this->brainstorm = Brainstorm::create($data);
             if ($this->parent) {
+                $users = array();
                 foreach ($this->parent->children as $subbrainstorm) {
-                    if ($subbrainstorm['user_id'] !== $GLOBALS['user']->id) {
-                        PersonalNotifications::add(
-                            $subbrainstorm['user_id'],
-                            PluginEngine::getURL($this->plugin, array(), "lamp/brainstorm/".$this->parent['id']),
-                            sprintf(_("%s hat mit gebrainstormed"), get_fullname()),
-                            "brainstorm_".$this->brainstorm->getId(),
-                            Avatar::getAvatar($GLOBALS['user']->id)->getURL(Avatar::MEDIUM)
-                            //$this->plugin->getPluginURL()."/assets/images/lighning_black.svg"
-                        );
+                    if ($subbrainstorm['user_id'] !== $GLOBALS['user']->id && !in_array($subbrainstorm['user_id'], $users)) {
+                        $users[] = $subbrainstorm['user_id'];
                     }
+                }
+                if (count($users)) {
+                    PersonalNotifications::add(
+                        $users,
+                        PluginEngine::getURL($this->plugin, array(), "lamp/brainstorm/" . $this->parent['id']),
+                        sprintf(_("%s hat mit gebrainstormed"), get_fullname()),
+                        "brainstorm_" . $this->brainstorm->getId(),
+                        Avatar::getAvatar($GLOBALS['user']->id)->getURL(Avatar::MEDIUM)
+                        //$this->plugin->getPluginURL()."/assets/images/lighning_black.svg"
+                    );
                 }
             }
             $this->redirect('lamp/brainstorm/'.($this->parent ? $this->parent->getId() : $this->brainstorm->getId()));
@@ -120,9 +124,26 @@ class LampController extends PluginController {
         $this->subbrainstorm['text'] = Request::get("text");
         $this->subbrainstorm->store();
 
-        $output = array(
-            'html' => $this->render_template_as_string("lamp/_subbrainstorms.php")
-        );
+        $output = array();
+
+        $users = array();
+        foreach ($this->brainstorm->children as $subbrainstorm) {
+            if ($subbrainstorm['user_id'] !== $GLOBALS['user']->id && !in_array($subbrainstorm['user_id'], $users)) {
+                $users[] = $subbrainstorm['user_id'];
+            }
+        }
+        if (count($users)) {
+            PersonalNotifications::add(
+                $users,
+                PluginEngine::getURL($this->plugin, array(), "lamp/brainstorm/" . $this->brainstorm['id']),
+                sprintf(_("%s hat mit gebrainstormed"), get_fullname()),
+                "brainstorm_" . $this->subbrainstorm->getId(),
+                Avatar::getAvatar($GLOBALS['user']->id)->getURL(Avatar::MEDIUM)
+                //$this->plugin->getPluginURL()."/assets/images/lighning_black.svg"
+            );
+        }
+
+        $output['html'] = $this->render_template_as_string("lamp/_subbrainstorms.php");
 
         $this->render_json($output);
     }
