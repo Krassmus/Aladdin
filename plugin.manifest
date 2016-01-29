@@ -1,12 +1,12 @@
 pluginname=Aladdin
 pluginclassname=Aladdin
 origin=intelec
-version=1.0
+version=2.0
 studipMinVersion=3.1
 dbscheme=install.sql
 uninstalldbscheme=uninstall.sql
 summary=Textbasiertes Brainstorming-Tool, das an reddit erinnert.
-descriptionlong=Mit Aladdin kann man Fragen stellen und schnell Antworten bekommen. Das Besondere ist, dass die Antworten auf- und abgewertet werden, sodass am Ende die sinnvollste Antwort oben steht. Man kann dieses Tool nutzen, um die Komilitonen zu Fragen, was man für die Klausur lernen sollte. Oder man kann fragen. bei welchem Pizzaservice zu einem Blockseminar bestellt werden soll.
+descriptionlong=Mit Aladdin kann man Fragen stellen und schnell Antworten bekommen. Das Besondere ist, dass die Antworten auf- und abgewertet werden, sodass am Ende die sinnvollste Antwort oben steht. Man kann dieses Tool nutzen, um die Komilitonen zu Fragen, was man für die Klausur lernen sollte. Oder welche Maßnahmen bei der ersten Hilfe eine Rolle spielen. Oder man kann einfach fragen. bei welchem Pizzaservice zu einem Blockseminar bestellt werden soll.
 icon=assets/images/lightning.svg
 screenshots = assets/images
 screenshots.aladdin_sane_bowie_drawing.jpg = Hmm, da ist diese Frage, aber wen könnte ich fragen? Alle?

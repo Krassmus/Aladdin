@@ -44,6 +44,17 @@ class Brainstorm extends SimpleORMap {
         );
     }
 
+    public function getBestSubbrainstorm()
+    {
+        $best = null;
+        foreach ($this->children as $subbrainstorm) {
+            if (!$best || ($subbrainstorm->power > $best->power)) {
+                $best = $subbrainstorm;
+            }
+        }
+        return $best;
+    }
+
     public function getPower() {
         return (int) DBManager::get()->fetchColumn('SELECT SUM(vote) FROM brainstorm_votes WHERE brainstorm_id = ?', array($this->id));
     }

@@ -8,6 +8,17 @@
     padding: 10px;
     padding-left: 0px;
     margin-bottom: 10px;
+    .comments {
+        margin-top: 7px;
+        margin-left: 5px;
+        font-size: 0.8em;
+        .firstcomment {
+            opacity: 0.5;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
     article {
         border: 1px solid @content-color-40;
         &.vote_brainstorm {

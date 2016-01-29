@@ -15,6 +15,18 @@
         </div>
         <div class="body">
             <?= formatReady($brainstorm->text) ?>
+            <div class="comments">
+                <? if (count($brainstorm->children)) : ?>
+                    <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= _("Bester Kommentar dazu") ?>">
+                        <?= Assets::img("icons/16/blue/chat", array('class' => "text-bottom")) ?>
+                        <?= formatReady($brainstorm->getBestSubbrainstorm()->text) ?>
+                    </a>
+                <? else : ?>
+                    <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= _("Dazu weiter brainstormen") ?>">
+                        <?= Assets::img("icons/16/blue/comment") ?>
+                    </a>
+                <? endif ?>
+            </div>
         </div>
     </section>
 </article>
