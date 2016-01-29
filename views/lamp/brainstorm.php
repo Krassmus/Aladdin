@@ -6,11 +6,7 @@
 
     <hr style="display: block; border: 0px; height: 2px; background-color: #dddddd; width: 50%; margin: 30px; margin-left: auto; margin-right: auto;">
 
-    <? if ($brainstorm->children) : ?>
-        <? foreach ($brainstorm->children->orderBy('power DESC, mkdate ASC') as $child): ?>
-            <?= $this->render_partial('lamp/_voteable_brainstorm', array('brainstorm' => $child)) ?>
-        <? endforeach; ?>
-    <? endif ?>
+    <?= $this->render_partial("lamp/_subbrainstorms.php") ?>
 
     <? if (!$brainstorm['closed']) : ?>
         <form class='default' method='post' action="<?= $controller->url_for('lamp/edit') ?>">

@@ -12,7 +12,7 @@ STUDIP.Aladdin = {
                 "value": value
             },
             "success": function (output) {
-                jQuery("#brainstorm_" + brainstorm_id).replaceWith(output.html);
+                jQuery(".subbrainstorms").replaceWith(output.html);
             }
         });
         return false;

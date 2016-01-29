@@ -92,14 +92,16 @@ class LampController extends PluginController {
 
     public function vote_action($brainstorm_id)
     {
-        $this->brainstorm = new Brainstorm($brainstorm_id);
-        if (($GLOBALS['user']->id !== $this->brainstorm['user_id']) && !$GLOBALS['perm']->have_studip_perm("autor", $this->brainstorm['seminar_id'])) {
+        $this->subbrainstorm = new Brainstorm($brainstorm_id);
+        if (($GLOBALS['user']->id !== $this->subbrainstorm['user_id']) && !$GLOBALS['perm']->have_studip_perm("autor", $this->subbrainstorm['seminar_id'])) {
             throw new Exception("No rights to vote.");
         }
-        $this->brainstorm->vote(Request::get("value"));
+        $this->subbrainstorm->vote(Request::get("value"));
+
+        $this->brainstorm = $this->subbrainstorm->parent;
 
         $output = array(
-            'html' => $this->render_template_as_string("lamp/_voteable_brainstorm.php")
+            'html' => $this->render_template_as_string("lamp/_subbrainstorms.php")
         );
 
         $this->render_json($output);
