@@ -120,8 +120,6 @@ class LampController extends PluginController {
         $this->subbrainstorm['text'] = Request::get("text");
         $this->subbrainstorm->store();
 
-        $this->brainstorm->restore();
-
         $output = array(
             'html' => $this->render_template_as_string("lamp/_subbrainstorms.php")
         );

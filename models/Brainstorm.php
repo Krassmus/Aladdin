@@ -23,6 +23,9 @@ class Brainstorm extends SimpleORMap {
             'class_name' => 'Brainstorm',
             'assoc_foreign_key' => 'range_id'
         );
+        $config['has_many']['votes'] = array(
+            'class_name' => 'BrainstormVote'
+        );
         $config['belongs_to']['parent'] = array(
             'class_name' => 'Brainstorm',
             'foreign_key' => 'range_id'

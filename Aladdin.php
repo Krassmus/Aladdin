@@ -19,12 +19,24 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
             if (stripos(Request::get("page"), "plugins.php/aladdin") !== false && isset($data['Aladdin'])) {
                 $brainstorm = new Brainstorm($data['Aladdin']['brainstorm_id']);
                 if ($GLOBALS['perm']->have_studip_perm("autor", $brainstorm['seminar_id'])) {
-                    $output = array();
-                    $tf = new Flexi_TemplateFactory(__DIR__."/views");
-                    $template = $tf->open("lamp/_subbrainstorms.php");
-                    $template->set_attribute("brainstorm", $brainstorm);
-                    $output['html'] = $template->render();
-                    UpdateInformation::setInformation("Aladdin.updateSubbrainstorms", $output);
+                    $newtime = $brainstorm['chdate'];
+                    foreach ($brainstorm->children as $child) {
+                        foreach ($child->votes as $vote) {
+                            if ($vote['chdate'] > $newtime) {
+                                $newtime = $vote['chdate'];
+                            }
+                        }
+                    }
+
+                    if ($newtime > $data['Aladdin']['lasttime']) {
+                        $output = array();
+                        $tf = new Flexi_TemplateFactory(__DIR__ . "/views");
+                        $template = $tf->open("lamp/_subbrainstorms.php");
+                        $template->set_attribute("brainstorm", $brainstorm);
+                        $output['html'] = $template->render();
+                        $output['lasttime'] = $newtime;
+                        UpdateInformation::setInformation("Aladdin.updateSubbrainstorms", $output);
+                    }
                 }
             }
         }
