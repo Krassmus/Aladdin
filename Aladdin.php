@@ -21,6 +21,9 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
                 if ($GLOBALS['perm']->have_studip_perm("autor", $brainstorm['seminar_id'])) {
                     $newtime = $brainstorm['chdate'];
                     foreach ($brainstorm->children as $child) {
+                        if ($child['chdate'] > $newtime) {
+                            $newtime = $child['chdate'];
+                        }
                         foreach ($child->votes as $vote) {
                             if ($vote['chdate'] > $newtime) {
                                 $newtime = $vote['chdate'];
