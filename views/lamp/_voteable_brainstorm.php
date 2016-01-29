@@ -9,7 +9,9 @@
                 <?= Assets::input('icons/16/' . ($brainstorm->myvote->vote == -1 ? 'red' : 'blue') . '/arr_1down.png', array('name' => 'vote[-1][]', 'value' => -1)); ?>
             </form>
         </nav>
-        <h1><?= htmlReady($brainstorm->title) ?></h1>
+        <? if ($brainstorm->title) : ?>
+            <h1><?= htmlReady($brainstorm->title) ?></h1>
+        <? endif ?>
         <div class='power'>
             <?= $brainstorm->power ?>
         </div>

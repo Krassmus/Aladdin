@@ -38,7 +38,7 @@ class LampController extends PluginController {
 
             $this->brainstorm = Brainstorm::create($data);
             if ($this->parent) {
-                $users = array();
+                $users = array($this->parent['user_id']);
                 foreach ($this->parent->children as $subbrainstorm) {
                     if ($subbrainstorm['user_id'] !== $GLOBALS['user']->id && !in_array($subbrainstorm['user_id'], $users)) {
                         $users[] = $subbrainstorm['user_id'];
@@ -124,7 +124,7 @@ class LampController extends PluginController {
         $this->subbrainstorm['text'] = studip_utf8decode(Request::get("text"));
         $this->subbrainstorm->store();
 
-        $output = array();
+        $output = array($this->brainstorm['user_id']);
 
         $users = array();
         foreach ($this->brainstorm->children as $subbrainstorm) {

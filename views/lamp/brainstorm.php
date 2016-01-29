@@ -1,5 +1,7 @@
 <div class='brainstorm'>
-    <h1><?= htmlReady($brainstorm->title) ?></h1>
+    <? if ($brainstorm->title) : ?>
+        <h1><?= htmlReady($brainstorm->title) ?></h1>
+    <? endif ?>
     <div class="body">
         <?= formatReady($brainstorm->text) ?>
     </div>
