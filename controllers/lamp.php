@@ -121,7 +121,7 @@ class LampController extends PluginController {
         $this->subbrainstorm['seminar_id'] = $this->brainstorm['seminar_id'];
         $this->subbrainstorm['range_id'] = $this->brainstorm->getId();
         $this->subbrainstorm['user_id'] = $GLOBALS['user']->id;
-        $this->subbrainstorm['text'] = Request::get("text");
+        $this->subbrainstorm['text'] = studip_utf8decode(Request::get("text"));
         $this->subbrainstorm->store();
 
         $output = array();

@@ -35,6 +35,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
                         $output = array();
                         $tf = new Flexi_TemplateFactory(__DIR__ . "/views");
                         $template = $tf->open("lamp/_subbrainstorms.php");
+                        $template->set_attribute("plugin", $this);
                         $template->set_attribute("brainstorm", $brainstorm);
                         $output['html'] = $template->render();
                         $output['lasttime'] = $newtime;
