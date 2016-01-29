@@ -107,6 +107,28 @@ class LampController extends PluginController {
         $this->render_json($output);
     }
 
+    public function add_subbrainstorm_action($brainstorm_id)
+    {
+        $this->brainstorm = new Brainstorm($brainstorm_id);
+        if (!$GLOBALS['perm']->have_studip_perm("autor", $this->brainstorm['seminar_id'])) {
+            throw new Exception("No rights to vote.");
+        }
+        $this->subbrainstorm = new Brainstorm();
+        $this->subbrainstorm['seminar_id'] = $this->brainstorm['seminar_id'];
+        $this->subbrainstorm['range_id'] = $this->brainstorm->getId();
+        $this->subbrainstorm['user_id'] = $GLOBALS['user']->id;
+        $this->subbrainstorm['text'] = Request::get("text");
+        $this->subbrainstorm->store();
+
+        $this->brainstorm->restore();
+
+        $output = array(
+            'html' => $this->render_template_as_string("lamp/_subbrainstorms.php")
+        );
+
+        $this->render_json($output);
+    }
+
     private function init()
     {
         // Fetch sidebar

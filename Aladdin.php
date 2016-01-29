@@ -11,6 +11,25 @@ require_once __DIR__."/models/BrainstormVote.php";
  */
 class Aladdin extends StudIPPlugin implements StandardPlugin {
 
+    public function __construct()
+    {
+        parent::__construct();
+        if (UpdateInformation::isCollecting()) {
+            $data = Request::getArray("page_info");
+            if (stripos(Request::get("page"), "plugins.php/aladdin") !== false && isset($data['Aladdin'])) {
+                $brainstorm = new Brainstorm($data['Aladdin']['brainstorm_id']);
+                if ($GLOBALS['perm']->have_studip_perm("autor", $brainstorm['seminar_id'])) {
+                    $output = array();
+                    $tf = new Flexi_TemplateFactory(__DIR__."/views");
+                    $template = $tf->open("lamp/_subbrainstorms.php");
+                    $template->set_attribute("brainstorm", $brainstorm);
+                    $output['html'] = $template->render();
+                    UpdateInformation::setInformation("Aladdin.updateSubbrainstorms", $output);
+                }
+            }
+        }
+    }
+
     public function initialize() {
         self::addStylesheet('/assets/style.less');
         PageLayout::addScript($this->getPluginURL() . '/assets/autoresize.jquery.min.js');

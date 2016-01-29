@@ -9,7 +9,7 @@
     <?= $this->render_partial("lamp/_subbrainstorms.php") ?>
 
     <? if (!$brainstorm['closed']) : ?>
-        <form class='default' method='post' action="<?= $controller->url_for('lamp/edit') ?>">
+        <form class='default' method='post' action="<?= $controller->url_for('lamp/edit') ?>" onSubmit="STUDIP.Aladdin.postBrainstorm.call(this); return false;">
             <?= CSRFProtection::tokenTag() ?>
             <input type="hidden" name="range_id" value="<?= $brainstorm->getId() ?>">
             <textarea type='text' name='brainstorm[text]' rows='0' cols='30' placeholder="Brainstorming ..."></textarea>
