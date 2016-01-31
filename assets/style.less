@@ -6,6 +6,7 @@
         height: 24px;
     }
     padding: 10px;
+    padding-right: 0px;
     padding-left: 0px;
     margin-bottom: 10px;
     .comments {
@@ -76,8 +77,11 @@
             }
         }
         &.linked_brainstorm {
+            margin-bottom: 10px;
             padding: 10px;
             color: #000;
+            margin-left: auto;
+            margin-right: auto;
             div.type {
                 font-size: 0.8em;
                 color: @content-color;
@@ -87,5 +91,22 @@
                 color: #000;
             }
         }
+    }
+    .brainstorm_body {
+        background: url("@{icon-path}/black/arr_1right.png") no-repeat 10px 13px;
+        border: thin solid @content-color-40;
+        padding: 10px;
+        padding-left: 30px;
+    }
+}
+.parent_brainstorm {
+    display: block;
+    padding: 10px;
+    padding-left: 30px;
+    font-size: 0.8em;
+    border: thin solid @content-color-40;
+    background: url("@{icon-path}/blue/arr_1up.png") no-repeat 10px 10px;
+    .title {
+        font-weight: bold;
     }
 }

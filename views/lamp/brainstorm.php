@@ -1,9 +1,19 @@
-<div class='brainstorm'>
-    <? if ($brainstorm->title) : ?>
-        <h1><?= htmlReady($brainstorm->title) ?></h1>
-    <? endif ?>
+<? if ($brainstorm->parent) : ?>
+<a href="<?= PluginEngine::getLink($plugin, array(), "lamp/brainstorm/".$brainstorm->parent->getId()) ?>" class="parent_brainstorm">
+    <div class="title"><?= htmlReady($brainstorm->parent->title) ?></div>
     <div class="body">
-        <?= formatReady($brainstorm->text) ?>
+        <?= formatReady($brainstorm->parent->text) ?>
+    </div>
+</a>
+<? endif ?>
+<div class='brainstorm'>
+    <div class="brainstorm_body">
+        <? if ($brainstorm->title) : ?>
+            <h1><?= htmlReady($brainstorm->title) ?></h1>
+        <? endif ?>
+        <div class="body">
+            <?= formatReady($brainstorm->text) ?>
+        </div>
     </div>
 
     <hr style="display: block; border: 0px; height: 2px; background-color: #dddddd; width: 50%; margin: 30px; margin-left: auto; margin-right: auto;">
