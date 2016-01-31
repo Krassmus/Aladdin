@@ -52,6 +52,21 @@ STUDIP.Aladdin = {
                 STUDIP.Aladdin.updateSubbrainstorms(output);
             }
         });
+    },
+    "delete_brainstorm": function () {
+        if (window.confirm("Wirklich löschen?")) {
+            var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
+            jQuery.ajax({
+                "url": STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/delete/" + brainstorm_id,
+                "type": "post",
+                "success": function (output) {
+                    jQuery("#brainstorm_" + brainstorm_id).fadeOut(function () {
+                        jQuery(this).remove();
+                    });
+                }
+            });
+        }
+        return false;
     }
 };
 $(document).ready(function() {
@@ -59,3 +74,4 @@ $(document).ready(function() {
 });
 
 jQuery(document).on("click", ".brainstorm form.voting input[type=image]", STUDIP.Aladdin.vote_brainstorm);
+jQuery(document).on("click", ".vote_brainstorm .delete", STUDIP.Aladdin.delete_brainstorm);

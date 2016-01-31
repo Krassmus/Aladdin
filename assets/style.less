@@ -26,14 +26,15 @@
             padding: 0px;
 
             section.main {
-                display: table;
+                display: table-row;
+
                 h1:empty {
                     display: none;
                 }
                 nav {
-                    background-color: @content-color-40;
                     display: table-cell;
-                    width: 4%;
+                    background-color: @content-color-40;
+                    width: 20px;
                     padding: 4px;
                     text-align: center;
                     vertical-align: middle;
@@ -41,15 +42,19 @@
                         display: block;
                     }
                 }
-                div.body {
+                .body {
+                    display: table-cell;
                     padding: 10px;
-                    display: table-cell;
                     vertical-align: middle;
-                    width: 92%;
+                    width: 100%;
+                    .actions {
+                        float: right;
+                    }
                 }
-                div.power {
+                .power {
                     display: table-cell;
-                    width: 4%;
+                    min-width: 16px;
+                    width: 16px;
                     padding: 4px;
                     text-align: center;
                     vertical-align: middle;

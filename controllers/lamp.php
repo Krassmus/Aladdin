@@ -19,8 +19,9 @@ class LampController extends PluginController {
         Navigation::activateItem("/course/brainstorm");
         PageLayout::setTitle(_("Neuen Brainstorm starten"));
 
-        if (Request::option("range_id")) {
-            $this->parent = new Brainstorm(Request::option("range_id"));
+        $data = Request::getArray('brainstorm');
+        if ($data['range_id']) {
+            $this->parent = new Brainstorm($data['range_id']);
         }
 
         if (($this->parent && !$GLOBALS['perm']->have_studip_perm("autor", $this->parent['seminar_id'])) || !$GLOBALS['perm']->have_studip_perm("autor", $_SESSION['SessionSeminar'])) {
@@ -31,14 +32,19 @@ class LampController extends PluginController {
 
         if (Request::isPost() && Request::submitted('create')) {
             CSRFProtection::verifySecurityToken();
-            $data = Request::getArray('brainstorm');
+
             $data['user_id'] = User::findCurrent()->id;
             $data['range_id'] = $this->parent ? $this->parent->getId() : null;
             $data['seminar_id'] = $this->parent ? $this->parent['seminar_id'] : $_SESSION['SessionSeminar'];
 
-            $this->brainstorm = Brainstorm::create($data);
+            $this->brainstorm->setData($data);
+            $this->brainstorm->store();
+            
             if ($this->parent) {
-                $users = array($this->parent['user_id']);
+                $users = array();
+                if ($this->parent['user_id'] !== $GLOBALS['user']->id) {
+                    $users[] = $this->parent['user_id'];
+                }
                 foreach ($this->parent->children as $subbrainstorm) {
                     if ($subbrainstorm['user_id'] !== $GLOBALS['user']->id && !in_array($subbrainstorm['user_id'], $users)) {
                         $users[] = $subbrainstorm['user_id'];
@@ -87,10 +93,14 @@ class LampController extends PluginController {
         $parent = $this->brainstorm['range_id'];
         $this->brainstorm->delete();
         PageLayout::postMessage(MessageBox::success(_("Beitrag wurde gelöscht.")));
-        if ($parent) {
-            $this->redirect("lamp/brainstorm/".$parent);
+        if (Request::isAjax()) {
+            $this->render_text("ok");
         } else {
-            $this->redirect("lamp/index");
+            if ($parent) {
+                $this->redirect("lamp/brainstorm/" . $parent);
+            } else {
+                $this->redirect("lamp/index");
+            }
         }
     }
 

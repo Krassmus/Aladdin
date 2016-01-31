@@ -16,6 +16,18 @@
             <?= $brainstorm->power ?>
         </div>
         <div class="body">
+            <? if ($brainstorm['user_id'] === $GLOBALS['user']->id || $GLOBALS['perm']->have_studip_perm("tutor", $brainstorm['seminar_id'])) : ?>
+                <div class="actions">
+                    <? if ($brainstorm['user_id'] === $GLOBALS['user']->id) : ?>
+                    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="edit" data-dialog>
+                        <?= Assets::img("icons/16/blue/edit", array('class' => "text-bottom")) ?>
+                    </a>
+                    <? endif ?>
+                    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="delete">
+                        <?= Assets::img("icons/16/blue/trash", array('class' => "text-bottom")) ?>
+                    </a>
+                </div>
+            <? endif ?>
             <?= formatReady($brainstorm->text) ?>
             <div class="comments">
                 <? if (count($brainstorm->children)) : ?>
