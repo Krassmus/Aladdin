@@ -20,7 +20,7 @@
             <div class="comments">
                 <? if (count($brainstorm->children)) : ?>
                     <a href="<?= PluginEngine::getLink($plugin, array(), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= _("Bester Kommentar dazu") ?>">
-                        <?= Assets::img("icons/16/blue/chat", array('class' => "text-bottom")) ?>
+                        <?= Assets::img("icons/14/blue/chat", array('class' => "text-bottom")) ?>
                         <?= formatReady($brainstorm->getBestSubbrainstorm()->text) ?>
                     </a>
                 <? else : ?>

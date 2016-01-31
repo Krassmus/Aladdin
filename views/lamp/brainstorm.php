@@ -1,10 +1,15 @@
 <? if ($brainstorm->parent) : ?>
-<a href="<?= PluginEngine::getLink($plugin, array(), "lamp/brainstorm/".$brainstorm->parent->getId()) ?>" class="parent_brainstorm">
-    <div class="title"><?= htmlReady($brainstorm->parent->title) ?></div>
-    <div class="body">
-        <?= formatReady($brainstorm->parent->text) ?>
-    </div>
-</a>
+    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/brainstorm/".$brainstorm->parent->getId()) ?>" class="parent_brainstorm">
+        <div class="title"><?= htmlReady($brainstorm->parent->title) ?></div>
+        <div class="body">
+            <?= formatReady($brainstorm->parent->text) ?>
+        </div>
+    </a>
+<? else : ?>
+    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/index") ?>">
+        <?= Assets::img("icons/16/blue/arr_1up", array("class" => "text-bottom")) ?>
+        <?= _("Zur Übersicht") ?>
+    </a>
 <? endif ?>
 <div class='brainstorm'>
     <div class="brainstorm_body">
