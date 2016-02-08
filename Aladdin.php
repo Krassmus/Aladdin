@@ -66,7 +66,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
     }
 
     public function getIconNavigation($course_id, $last_visit, $user_id) {
-        $new = Brainstorm::findBySQL("range_id = ? AND chdate > ?", array($course_id, $last_visit));
+        $new = Brainstorm::findBySQL("seminar_id = ? AND chdate > ?", array($course_id, $last_visit));
         $icon = new Navigation($this->getDisplayTitle(), PluginEngine::GetURL($this, array('cid' => $course_id), 'lamp/index'));
         $icon->setImage($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle()));
         if (count($new)) {
