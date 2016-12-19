@@ -7,7 +7,7 @@
     </a>
 <? else : ?>
     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/index") ?>">
-        <?= Assets::img("icons/16/blue/arr_1up", array("class" => "text-bottom")) ?>
+        <?= Icon::create("arr_1up", "clickable")->asImg(20, array("class" => "text-bottom")) ?>
         <?= _("Zur Übersicht") ?>
     </a>
 <? endif ?>

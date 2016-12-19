@@ -168,7 +168,12 @@ class LampController extends PluginController {
         // Create actions
         $actions = new ActionsWidget();
         if ($GLOBALS['perm']->have_studip_perm('tutor', Course::findCurrent()->id)) {
-            $actions->addLink(_('Jetzt brainstormen'), PluginEngine::GetURL($this->plugin, array(), 'lamp/edit'), 'icons/16/blue/add.png', array('data-dialog' => 'size=auto;buttons=false;resize=false'));
+            $actions->addLink(
+                _('Jetzt brainstormen'),
+                PluginEngine::GetURL($this->plugin, array(), 'lamp/edit'),
+                Icon::create('add', "clickable"),
+                array('data-dialog' => 'size=auto;buttons=false;resize=false')
+            );
         }
 
         $sidebar->addWidget($actions);

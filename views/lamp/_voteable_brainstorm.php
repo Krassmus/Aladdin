@@ -4,9 +4,9 @@
             <form method="post" class="voting">
                 <?= CSRFProtection::tokenTag() ?>
                 <input type='hidden' name='brainstorm_id' value='<?= $brainstorm->id ?>'>
-                <?= Assets::input('icons/16/' . ($brainstorm->myvote->vote == 1 ? 'green' : 'blue') . '/arr_1up.png', array('name' => 'vote[1][]', 'value' => 1)); ?>
-                <?= Assets::input('icons/16/blue/remove.png', array('name' => 'vote[0][]', 'value' => 0)); ?>
-                <?= Assets::input('icons/16/' . ($brainstorm->myvote->vote == -1 ? 'red' : 'blue') . '/arr_1down.png', array('name' => 'vote[-1][]', 'value' => -1)); ?>
+                <?= Icon::create("arr_1up", ($brainstorm->myvote->vote == 1 ? "status-green" : "clickable"))->asInput(16, array('name' => 'vote[1][]', 'value' => 1)) ?>
+                <?= Icon::create("remove", "clickable")->asInput(16, array('name' => 'vote[0][]', 'value' => 0)) ?>
+                <?= Icon::create("arr_1down", ($brainstorm->myvote->vote == -1 ? "status-red" : "clickable"))->asInput(16, array('name' => 'vote[-1][]', 'value' => -1)) ?>
             </form>
         </nav>
         <? if ($brainstorm->title) : ?>
@@ -20,11 +20,11 @@
                 <div class="actions">
                     <? if ($brainstorm['user_id'] === $GLOBALS['user']->id) : ?>
                     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="edit" data-dialog>
-                        <?= Assets::img("icons/16/blue/edit", array('class' => "text-bottom")) ?>
+                        <?= Icon::create("edit", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                     <? endif ?>
                     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="delete">
-                        <?= Assets::img("icons/16/blue/trash", array('class' => "text-bottom")) ?>
+                        <?= Icon::create("trash", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                 </div>
             <? endif ?>
@@ -32,12 +32,12 @@
             <div class="comments">
                 <? if (count($brainstorm->children)) : ?>
                     <a href="<?= PluginEngine::getLink($plugin, array(), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= _("Bester Kommentar dazu") ?>">
-                        <?= Assets::img("icons/14/blue/chat", array('class' => "text-bottom")) ?>
+                        <?= Icon::create("chat", "clickable")->asImg(14, array('class' => "text-bottom")) ?>
                         <?= formatReady($brainstorm->getBestSubbrainstorm()->text) ?>
                     </a>
                 <? else : ?>
                     <a href="<?= PluginEngine::getLink($plugin, array(), 'lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= _("Dazu weiter brainstormen") ?>">
-                        <?= Assets::img("icons/16/blue/comment") ?>
+                        <?= Icon::create("comment", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                 <? endif ?>
             </div>
