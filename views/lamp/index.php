@@ -16,3 +16,21 @@
         </div>
     </a>
 <? endif ?>
+
+<?
+$sidebar = Sidebar::Get();
+
+$sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
+
+// Create actions
+$actions = new ActionsWidget();
+if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
+    $actions->addLink(
+        _('Jetzt brainstormen'),
+        PluginEngine::GetURL($plugin, array(), 'lamp/edit'),
+        Icon::create('add', "clickable"),
+        array('data-dialog' => 'size=auto;buttons=false;resize=false')
+    );
+}
+
+$sidebar->addWidget($actions);

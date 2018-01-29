@@ -7,7 +7,6 @@ class LampController extends PluginController {
         parent::before_filter($action, $args);
 
         PageLayout::setTitle(Context::getHeaderLine()." - ".$this->plugin->getDisplayTitle());
-        $this->init();
     }
 
     public function index_action() {
@@ -159,24 +158,4 @@ class LampController extends PluginController {
         $this->render_json($output);
     }
 
-    private function init()
-    {
-        // Fetch sidebar
-        $sidebar = Sidebar::Get();
-
-        $sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
-
-        // Create actions
-        $actions = new ActionsWidget();
-        if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
-            $actions->addLink(
-                _('Jetzt brainstormen'),
-                PluginEngine::GetURL($this->plugin, array(), 'lamp/edit'),
-                Icon::create('add', "clickable"),
-                array('data-dialog' => 'size=auto;buttons=false;resize=false')
-            );
-        }
-
-        $sidebar->addWidget($actions);
-    }
 }

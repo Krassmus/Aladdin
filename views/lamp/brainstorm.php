@@ -34,3 +34,29 @@
         </form>
     <? endif ?>
 </div>
+
+<?
+$sidebar = Sidebar::Get();
+
+$sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
+
+// Create actions
+$actions = new ActionsWidget();
+if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
+    $actions->addLink(
+        _('Jetzt brainstormen'),
+        PluginEngine::GetURL($plugin, array(), 'lamp/edit'),
+        Icon::create('add', "clickable"),
+        array('data-dialog' => 'size=auto;buttons=false;resize=false')
+    );
+    $oldbase = URLHelper::setBaseURL($GLOBALS['ABSOLUTE_URI_STUDIP']);
+    $actions->addLink(
+        _("QR-Code anzeigen"),
+        PluginEngine::getURL($plugin, array(), "lamp/brainstorm/".$brainstorm->id),
+        Icon::create("code-qr", "clickable"),
+        array('data-qr-code' => "1")
+    );
+    URLHelper::setBaseURL($oldbase);
+}
+
+$sidebar->addWidget($actions);
