@@ -25,7 +25,7 @@ STUDIP.Aladdin = {
         var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
         jQuery(this).closest(".brainstorm").find("nav").css("opacity", "0.5");
         jQuery.ajax({
-            "url": STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/vote/" + brainstorm_id,
+            "url": STUDIP.URLHelper.getURL(STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/vote/" + brainstorm_id),
             "type": "post",
             "dataType": "json",
             "data": {
@@ -42,7 +42,7 @@ STUDIP.Aladdin = {
         var text = jQuery(this).find("textarea").val();
         jQuery(this).find("textarea").val('');
         jQuery.ajax({
-            "url": STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/add_subbrainstorm/" + brainstorm_id,
+            "url": STUDIP.URLHelper.getURL(STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/add_subbrainstorm/" + brainstorm_id),
             "type": "post",
             "dataType": "json",
             "data": {
@@ -57,7 +57,7 @@ STUDIP.Aladdin = {
         if (window.confirm("Wirklich löschen?")) {
             var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
             jQuery.ajax({
-                "url": STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/delete/" + brainstorm_id,
+                "url": STUDIP.URLHelper.getURL(STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/delete/" + brainstorm_id),
                 "type": "post",
                 "success": function (output) {
                     jQuery("#brainstorm_" + brainstorm_id).fadeOut(function () {

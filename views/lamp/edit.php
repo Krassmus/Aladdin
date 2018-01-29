@@ -1,4 +1,6 @@
-<form class="default" method="post" action="<?= $controller->url_for('lamp/edit/'.$brainstorm->getId()) ?>">
+<form class="default"
+      method="post"
+      action="<?= $controller->url_for('lamp/edit/'.$brainstorm->getId()) ?>">
 
     <?= CSRFProtection::tokenTag() ?>
     

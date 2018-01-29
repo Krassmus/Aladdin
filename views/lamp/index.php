@@ -8,10 +8,10 @@
     <a style="display: flex; align-items: center;" href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit") ?>" data-dialog>
         <img src="<?= $plugin->getPluginURL() ?>/assets/images/lamp.png" style="max-height: 70vh;">
         <div style="font-size: 1.2em;">
-            <?= _("Und als verzweifelnd er durchblättert<br>
-                Seite für Seite sein Gedächtnis<br>
+            <?= _("Und als verzweifelnd er durchblÃ¤ttert<br>
+                Seite fÃ¼r Seite sein GedÃ¤chtnis<br>
                 Nach Mitteln gegen diese Pein,<br>
-                Fiel ihm des falschen Freunds Vermächtnis,<br>
+                Fiel ihm des falschen Freunds VermÃ¤chtnis,<br>
                 Die Wunderlampe, wieder ein. ") ?>
         </div>
     </a>

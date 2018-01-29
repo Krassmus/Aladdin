@@ -70,7 +70,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
         $icon = new Navigation($this->getDisplayTitle(), PluginEngine::GetURL($this, array('cid' => $course_id), 'lamp/index'));
         $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle())));
         if ($new) {
-            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(_("%s neue Brainstorms verfügbar"), $new))));
+            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(_("%s neue Brainstorms verfÃ¼gbar"), $new))));
         }
         return $icon;
     }

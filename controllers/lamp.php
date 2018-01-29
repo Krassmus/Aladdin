@@ -6,13 +6,13 @@ class LampController extends PluginController {
 
         parent::before_filter($action, $args);
 
-        PageLayout::setTitle($GLOBALS['SessSemName']["header_line"]." - ".$this->plugin->getDisplayTitle());
+        PageLayout::setTitle(Context::getHeaderLine()." - ".$this->plugin->getDisplayTitle());
         $this->init();
     }
 
     public function index_action() {
         Navigation::activateItem("/course/brainstorm");
-        $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL", array($_SESSION['SessionSeminar']));
+        $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL", array(Context::get()->id));
     }
 
     public function edit_action($brainstorm_id = null) {
@@ -24,7 +24,7 @@ class LampController extends PluginController {
             $this->parent = new Brainstorm($data['range_id']);
         }
 
-        if (($this->parent && !$GLOBALS['perm']->have_studip_perm("autor", $this->parent['seminar_id'])) || !$GLOBALS['perm']->have_studip_perm("autor", $_SESSION['SessionSeminar'])) {
+        if (($this->parent && !$GLOBALS['perm']->have_studip_perm("autor", $this->parent['seminar_id'])) || !$GLOBALS['perm']->have_studip_perm("autor", Context::get()->id)) {
             throw new Exception("No permission to post here");
         }
 
@@ -35,7 +35,7 @@ class LampController extends PluginController {
 
             $data['user_id'] = User::findCurrent()->id;
             $data['range_id'] = $this->parent ? $this->parent->getId() : null;
-            $data['seminar_id'] = $this->parent ? $this->parent['seminar_id'] : $_SESSION['SessionSeminar'];
+            $data['seminar_id'] = $this->parent ? $this->parent['seminar_id'] : Context::get()->id;
 
             $this->brainstorm->setData($data);
             $this->brainstorm->store();
@@ -92,7 +92,7 @@ class LampController extends PluginController {
         }
         $parent = $this->brainstorm['range_id'];
         $this->brainstorm->delete();
-        PageLayout::postMessage(MessageBox::success(_("Beitrag wurde gelöscht.")));
+        PageLayout::postMessage(MessageBox::success(_("Beitrag wurde gelÃ¶scht.")));
         if (Request::isAjax()) {
             $this->render_text("ok");
         } else {
@@ -131,7 +131,7 @@ class LampController extends PluginController {
         $this->subbrainstorm['seminar_id'] = $this->brainstorm['seminar_id'];
         $this->subbrainstorm['range_id'] = $this->brainstorm->getId();
         $this->subbrainstorm['user_id'] = $GLOBALS['user']->id;
-        $this->subbrainstorm['text'] = studip_utf8decode(Request::get("text"));
+        $this->subbrainstorm['text'] = Request::get("text");
         $this->subbrainstorm->store();
 
         $output = array($this->brainstorm['user_id']);
@@ -142,6 +142,7 @@ class LampController extends PluginController {
                 $users[] = $subbrainstorm['user_id'];
             }
         }
+
         if (count($users)) {
             PersonalNotifications::add(
                 $users,
@@ -167,7 +168,7 @@ class LampController extends PluginController {
 
         // Create actions
         $actions = new ActionsWidget();
-        if ($GLOBALS['perm']->have_studip_perm('tutor', Course::findCurrent()->id)) {
+        if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
             $actions->addLink(
                 _('Jetzt brainstormen'),
                 PluginEngine::GetURL($this->plugin, array(), 'lamp/edit'),

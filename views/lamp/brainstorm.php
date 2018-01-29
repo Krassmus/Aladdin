@@ -8,7 +8,7 @@
 <? else : ?>
     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/index") ?>">
         <?= Icon::create("arr_1up", "clickable")->asImg(20, array("class" => "text-bottom")) ?>
-        <?= _("Zur Übersicht") ?>
+        <?= _("Zur Ãœbersicht") ?>
     </a>
 <? endif ?>
 <div class='brainstorm'>
