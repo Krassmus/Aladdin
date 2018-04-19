@@ -17,6 +17,6 @@
     </label>
     
     <div data-dialog-button>
-        <?= \Studip\Button::create(_('Anlegen'), 'create') ?>
+        <?= \Studip\Button::create(_('Speichern'), 'create') ?>
     </div>
 </form>
