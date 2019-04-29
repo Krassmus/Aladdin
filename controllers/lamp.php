@@ -16,7 +16,7 @@ class LampController extends PluginController {
 
     public function edit_action($brainstorm_id = null) {
         Navigation::activateItem("/course/brainstorm");
-        PageLayout::setTitle(_("Neuen Brainstorm starten"));
+        PageLayout::setTitle(dgettext("aladdin","Neuen Brainstorm starten"));
 
         $data = Request::getArray('brainstorm');
         if ($data['range_id']) {
@@ -53,7 +53,7 @@ class LampController extends PluginController {
                     PersonalNotifications::add(
                         $users,
                         PluginEngine::getURL($this->plugin, array(), "lamp/brainstorm/" . $this->parent['id']),
-                        sprintf(_("%s hat mit gebrainstormed"), get_fullname()),
+                        sprintf(dgettext("aladdin","%s hat mit gebrainstormed"), get_fullname()),
                         "brainstorm_" . $this->brainstorm->getId(),
                         Avatar::getAvatar($GLOBALS['user']->id)->getURL(Avatar::MEDIUM)
                         //$this->plugin->getPluginURL()."/assets/images/lighning_black.svg"
@@ -91,7 +91,7 @@ class LampController extends PluginController {
         }
         $parent = $this->brainstorm['range_id'];
         $this->brainstorm->delete();
-        PageLayout::postMessage(MessageBox::success(_("Beitrag wurde gelöscht.")));
+        PageLayout::postMessage(MessageBox::success(dgettext("aladdin","Beitrag wurde gelöscht.")));
         if (Request::isAjax()) {
             $this->render_text("ok");
         } else {
@@ -146,7 +146,7 @@ class LampController extends PluginController {
             PersonalNotifications::add(
                 $users,
                 PluginEngine::getURL($this->plugin, array(), "lamp/brainstorm/" . $this->brainstorm['id']),
-                sprintf(_("%s hat mit gebrainstormed"), get_fullname()),
+                sprintf(dgettext("aladdin","%s hat mit gebrainstormed"), get_fullname()),
                 "brainstorm_" . $this->subbrainstorm->getId(),
                 Avatar::getAvatar($GLOBALS['user']->id)->getURL(Avatar::MEDIUM)
                 //$this->plugin->getPluginURL()."/assets/images/lighning_black.svg"

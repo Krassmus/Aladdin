@@ -38,9 +38,9 @@ class Brainstorm extends SimpleORMap {
 
     public static function getTypes() {
         return array(
-            'simple' => _('Standard'),
-            'sub' => _('Untergliedert'),
-            'commented' => _('Kommentiert')
+            'simple' => dgettext("aladdin",'Standard'),
+            'sub' => dgettext("aladdin",'Untergliedert'),
+            'commented' => dgettext("aladdin",'Kommentiert')
         );
     }
 

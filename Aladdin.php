@@ -13,6 +13,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
 
     public function __construct()
     {
+        bindtextdomain("aladdin", DIR."/locale");
         parent::__construct();
         if (UpdateInformation::isCollecting()) {
             $data = Request::getArray("page_info");
@@ -57,7 +58,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
         $navigation->setURL(PluginEngine::GetURL($this, array(), 'lamp/index'));
         $navigation->setActiveImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_black.svg'));
         $navigation->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_white.svg'));
-        
+
         return array('brainstorm' => $navigation);
     }
 
@@ -70,7 +71,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
         $icon = new Navigation($this->getDisplayTitle(), PluginEngine::GetURL($this, array('cid' => $course_id), 'lamp/index'));
         $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle())));
         if ($new) {
-            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(_("%s neue Brainstorms verfügbar"), $new))));
+            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(dgettext("aladdin","%s neue Brainstorms verfügbar"), $new))));
         }
         return $icon;
     }
@@ -80,6 +81,6 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
     }
 
     public function getDisplayTitle() {
-        return _("Aladdin");
+        return dgettext("aladdin","Aladdin");
     }
 }

@@ -8,7 +8,7 @@
 <? else : ?>
     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/index") ?>">
         <?= Icon::create("arr_1up", "clickable")->asImg(20, array("class" => "text-bottom")) ?>
-        <?= _("Zur Übersicht") ?>
+        <?= dgettext("aladdin","Zur Übersicht") ?>
     </a>
 <? endif ?>
 <div class='brainstorm'>
@@ -30,7 +30,7 @@
             <?= CSRFProtection::tokenTag() ?>
             <input type="hidden" name="range_id" value="<?= $brainstorm->getId() ?>">
             <textarea type='text' name='brainstorm[text]' rows='0' cols='30' placeholder="Brainstorming ..."></textarea>
-            <?= \Studip\Button::create(_('Absenden'), 'create') ?>
+            <?= \Studip\Button::create(dgettext("aladdin",'Absenden'), 'create') ?>
         </form>
     <? endif ?>
 </div>
@@ -44,14 +44,14 @@ $sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
 $actions = new ActionsWidget();
 if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
     $actions->addLink(
-        _('Jetzt brainstormen'),
+        dgettext("aladdin",'Jetzt brainstormen'),
         PluginEngine::GetURL($plugin, array(), 'lamp/edit'),
         Icon::create('add', "clickable"),
         array('data-dialog' => 'size=auto;buttons=false;resize=false')
     );
     $oldbase = URLHelper::setBaseURL($GLOBALS['ABSOLUTE_URI_STUDIP']);
     $actions->addLink(
-        _("QR-Code anzeigen"),
+        dgettext("aladdin","QR-Code anzeigen"),
         PluginEngine::getURL($plugin, array(), "lamp/brainstorm/".$brainstorm->id),
         Icon::create("code-qr", "clickable"),
         array('data-qr-code' => "1")

@@ -8,17 +8,17 @@
 
     <? if (!$brainstorm['range_id']) : ?>
     <label>
-        <?= _('Titel') ?>
-        <input type="text" name="brainstorm[title]" value="<?= htmlReady($brainstorm['title']) ?>" placeholder="<?= _("Frage oder Thema") ?>">
+        <?= dgettext("aladdin",'Titel') ?>
+        <input type="text" name="brainstorm[title]" value="<?= htmlReady($brainstorm['title']) ?>" placeholder="<?= dgettext("aladdin","Frage oder Thema") ?>">
     </label>
     <? endif ?>
 
     <label>
-        <?= _('Text') ?>
-        <textarea name="brainstorm[text]" placeholder="<?= _("Um was soll's gehen?") ?>"><?= htmlReady($brainstorm['text']) ?></textarea>
+        <?= dgettext("aladdin",'Text') ?>
+        <textarea name="brainstorm[text]" placeholder="<?= dgettext("aladdin","Um was soll's gehen?") ?>"><?= htmlReady($brainstorm['text']) ?></textarea>
     </label>
     
     <div data-dialog-button>
-        <?= \Studip\Button::create(_('Anlegen'), 'create') ?>
+        <?= \Studip\Button::create(dgettext("aladdin",'Anlegen'), 'create') ?>
     </div>
 </form>

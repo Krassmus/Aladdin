@@ -31,12 +31,12 @@
             <?= formatReady($brainstorm->text) ?>
             <div class="comments">
                 <? if (count($brainstorm->children)) : ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= _("Bester Kommentar dazu") ?>">
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= dgettext("aladdin","Bester Kommentar dazu") ?>">
                         <?= Icon::create("chat", "clickable")->asImg(14, array('class' => "text-bottom")) ?>
                         <?= formatReady($brainstorm->getBestSubbrainstorm()->text) ?>
                     </a>
                 <? else : ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= _("Dazu weiter brainstormen") ?>">
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= dgettext("aladdin","Dazu weiter brainstormen") ?>">
                         <?= Icon::create("comment", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                 <? endif ?>

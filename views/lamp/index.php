@@ -8,7 +8,7 @@
     <a style="display: flex; align-items: center;" href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit") ?>" data-dialog>
         <img src="<?= $plugin->getPluginURL() ?>/assets/images/lamp.png" style="max-height: 70vh;">
         <div style="font-size: 1.2em;">
-            <?= _("Und als verzweifelnd er durchblättert<br>
+            <?= dgettext("aladdin","Und als verzweifelnd er durchblättert<br>
                 Seite für Seite sein Gedächtnis<br>
                 Nach Mitteln gegen diese Pein,<br>
                 Fiel ihm des falschen Freunds Vermächtnis,<br>
@@ -26,7 +26,7 @@ $sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar.png");
 $actions = new ActionsWidget();
 if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
     $actions->addLink(
-        _('Jetzt brainstormen'),
+        dgettext("aladdin",'Jetzt brainstormen'),
         PluginEngine::GetURL($plugin, array(), 'lamp/edit'),
         Icon::create('add', "clickable"),
         array('data-dialog' => 'size=auto;buttons=false;resize=false')
