@@ -13,7 +13,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
 
     public function __construct()
     {
-        bindtextdomain("aladdin", DIR."/locale");
+        bindtextdomain("aladdin", __DIR__."/locale");
         parent::__construct();
         if (UpdateInformation::isCollecting()) {
             $data = Request::getArray("page_info");
