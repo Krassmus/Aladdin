@@ -6,6 +6,14 @@
         </div>
     </a>
     <? if ($GLOBALS['perm']->have_studip_perm("tutor", Context::get()->id) || $GLOBALS['user']->id === $brainstorm['user_id']) : ?>
+        <a class="edit"
+           href="<?= PluginEngine::getLink(
+                 $plugin,
+                 [],
+                 "lamp/edit/" . $brainstorm->getId()
+                 ) ?>" data-dialog="size=auto;reload-on-close">
+            <?= Icon::create("edit", "clickable")->asImg(20) ?>
+        </a>
         <a class="delete" href="<?= PluginEngine::getLink($plugin, array(), "lamp/delete/".$brainstorm->getId()) ?>" onClick="return window.confirm('<?= dgettext("aladdin","Wirklich löschen?") ?>');">
             <?= Icon::create("trash", "clickable")->asImg(20) ?>
         </a>

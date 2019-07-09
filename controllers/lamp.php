@@ -28,6 +28,13 @@ class LampController extends PluginController {
         }
 
         $this->brainstorm = new Brainstorm($brainstorm_id);
+        $edit_mode = !$this->brainstorm->isNew();
+        PageLayout::setTitle(
+            dgettext(
+                'aladdin',
+                'Brainstorm bearbeiten'
+            )
+        );
 
         if (Request::isPost() && Request::submitted('create')) {
             CSRFProtection::verifySecurityToken();
@@ -60,7 +67,12 @@ class LampController extends PluginController {
                     );
                 }
             }
-            $this->redirect('lamp/brainstorm/'.($this->parent ? $this->parent->getId() : $this->brainstorm->getId()));
+            if ($edit_mode && !$this->parent) {
+                //Redirect to overview page:
+                $this->redirect('lamp/index');
+            } else {
+                $this->redirect('lamp/brainstorm/'.($this->parent ? $this->parent->getId() : $this->brainstorm->getId()));
+            }
         }
     }
 

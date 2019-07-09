@@ -19,6 +19,10 @@
     </label>
     
     <div data-dialog-button>
-        <?= \Studip\Button::create(dgettext("aladdin",'Anlegen'), 'create') ?>
+        <? if ($brainstorm->isNew()): ?>
+            <?= \Studip\Button::create(dgettext("aladdin",'Anlegen'), 'create') ?>
+        <? else: ?>
+            <?= \Studip\Button::create(dgettext("aladdin",'Speichern'), 'create') ?>
+        <? endif ?>
     </div>
 </form>

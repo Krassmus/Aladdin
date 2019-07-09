@@ -1,8 +1,9 @@
 pluginname=Aladdin
 pluginclassname=Aladdin
 origin=intelec
-version=2.2
+version=2.2.1
 studipMinVersion=4.0
+studipMaxVersion=4.3.99
 dbscheme=install.sql
 uninstalldbscheme=uninstall.sql
 summary=Textbasiertes Brainstorming-Tool, das an reddit erinnert.

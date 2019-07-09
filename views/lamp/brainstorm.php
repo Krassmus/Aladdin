@@ -21,8 +21,6 @@
         </div>
     </div>
 
-    <hr style="display: block; border: 0px; height: 2px; background-color: #dddddd; width: 50%; margin: 30px; margin-left: auto; margin-right: auto;">
-
     <?= $this->render_partial("lamp/_subbrainstorms.php") ?>
 
     <? if (!$brainstorm['closed']) : ?>
