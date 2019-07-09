@@ -35,6 +35,10 @@ class LampController extends PluginController {
                 'Brainstorm bearbeiten'
             )
         );
+        if ($edit_mode && !$GLOBALS['perm']->have_studip_perm('tutor', Context::getId())
+            && ($this->brainstorm->user_id != $GLOBALS['user']->id)) {
+            throw new AccessDeniedException();
+        }
 
         if (Request::isPost() && Request::submitted('create')) {
             CSRFProtection::verifySecurityToken();
