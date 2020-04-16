@@ -53,8 +53,8 @@ STUDIP.Aladdin = {
         });
     },
     "delete_brainstorm": function () {
-        if (window.confirm("Wirklich löschen?")) {
-            var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
+        var brainstorm_id = jQuery(this).closest(".brainstorm").data("brainstorm_id");
+        STUDIP.Dialog.confirm("Wirklich lÃ¶schen?", function () {
             jQuery.ajax({
                 "url": STUDIP.URLHelper.getURL(STUDIP.ABSOLUTE_URI_STUDIP + "plugins.php/aladdin/lamp/delete/" + brainstorm_id),
                 "type": "post",
@@ -64,7 +64,7 @@ STUDIP.Aladdin = {
                     });
                 }
             });
-        }
+        });
         return false;
     }
 };

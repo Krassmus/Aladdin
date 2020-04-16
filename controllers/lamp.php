@@ -49,7 +49,7 @@ class LampController extends PluginController {
 
             $this->brainstorm->setData($data);
             $this->brainstorm->store();
-            
+
             if ($this->parent) {
                 $users = array();
                 if ($this->parent['user_id'] !== $GLOBALS['user']->id) {
@@ -107,7 +107,6 @@ class LampController extends PluginController {
         }
         $parent = $this->brainstorm['range_id'];
         $this->brainstorm->delete();
-        PageLayout::postMessage(MessageBox::success(dgettext("aladdin","Beitrag wurde gelöscht.")));
         if (Request::isAjax()) {
             $this->render_text("ok");
         } else {
