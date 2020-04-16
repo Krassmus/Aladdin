@@ -31,7 +31,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
                         }
                     }
 
-                    if ($newtime > $data['Aladdin']['lasttime']) {
+                    if ($newtime > Request::get("server_timestamp")) {
                         $output = array();
                         $tf = new Flexi_TemplateFactory(__DIR__ . "/views");
                         $template = $tf->open("lamp/_subbrainstorms.php");
@@ -57,7 +57,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
         $navigation->setURL(PluginEngine::GetURL($this, array(), 'lamp/index'));
         $navigation->setActiveImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_black.svg'));
         $navigation->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_white.svg'));
-        
+
         return array('brainstorm' => $navigation);
     }
 

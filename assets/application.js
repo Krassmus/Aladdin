@@ -3,8 +3,7 @@ STUDIP.Aladdin = {
     "periodicalPushData": function () {
         if (jQuery(".subbrainstorms").length > 0) {
             return {
-                "brainstorm_id": jQuery(".subbrainstorms").data("brainstorm_id"),
-                "lasttime": jQuery(".subbrainstorms").data("lasttime")
+                "brainstorm_id": jQuery(".subbrainstorms").data("brainstorm_id")
             }
         }
     },
