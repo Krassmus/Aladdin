@@ -13,6 +13,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
 
     public function __construct()
     {
+        bindtextdomain("aladdin", __DIR__."/locale");
         parent::__construct();
         if (UpdateInformation::isCollecting()) {
             $data = Request::getArray("page_info");
@@ -70,7 +71,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
         $icon = new Navigation($this->getDisplayTitle(), PluginEngine::GetURL($this, array('cid' => $course_id), 'lamp/index'));
         $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle())));
         if ($new) {
-            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(_("%s neue Brainstorms verfügbar"), $new))));
+            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(dgettext("aladdin","%s neue Brainstorms verfügbar"), $new))));
         }
         return $icon;
     }
@@ -80,6 +81,6 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
     }
 
     public function getDisplayTitle() {
-        return _("Aladdin");
+        return dgettext("aladdin","Aladdin");
     }
 }

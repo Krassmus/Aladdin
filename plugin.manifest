@@ -1,8 +1,9 @@
 pluginname=Aladdin
 pluginclassname=Aladdin
 origin=intelec
-version=2.2
+version=2.2.1
 studipMinVersion=4.0
+studipMaxVersion=4.3.99
 dbscheme=install.sql
 uninstalldbscheme=uninstall.sql
 summary=Textbasiertes Brainstorming-Tool, das an reddit erinnert.
@@ -10,3 +11,4 @@ descriptionlong=Mit Aladdin kann man Fragen stellen und schnell Antworten bekomm
 icon=assets/images/lightning.svg
 screenshots = assets/images
 screenshots.lamp.png = Hmm, da ist diese Frage, aber wen könnte ich fragen? Alle?
+category=Kommunikation und Zusammenarbeit

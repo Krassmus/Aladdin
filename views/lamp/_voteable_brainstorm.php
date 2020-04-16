@@ -19,11 +19,11 @@
             <? if ($brainstorm['user_id'] === $GLOBALS['user']->id || $GLOBALS['perm']->have_studip_perm("tutor", $brainstorm['seminar_id'])) : ?>
                 <div class="actions">
                     <? if ($brainstorm['user_id'] === $GLOBALS['user']->id) : ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="edit" data-dialog>
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), "lamp/edit/".$brainstorm->getId()) ?>" class="edit" data-dialog>
                         <?= Icon::create("edit", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                     <? endif ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/edit/".$brainstorm->getId()) ?>" class="delete">
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), "lamp/edit/".$brainstorm->getId()) ?>" class="delete">
                         <?= Icon::create("trash", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                 </div>
@@ -31,12 +31,12 @@
             <?= formatReady($brainstorm->text) ?>
             <div class="comments">
                 <? if (count($brainstorm->children)) : ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array(), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= _("Bester Kommentar dazu") ?>">
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" title="<?= dgettext("aladdin","Bester Kommentar dazu") ?>">
                         <?= Icon::create("chat", "clickable")->asImg(14, array('class' => "text-bottom")) ?>
                         <?= formatReady($brainstorm->getBestSubbrainstorm()->text) ?>
                     </a>
                 <? else : ?>
-                    <a href="<?= PluginEngine::getLink($plugin, array(), 'lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= _("Dazu weiter brainstormen") ?>">
+                    <a href="<?= PluginEngine::getLink($plugin, array('cid' => $brainstorm['seminar_id']), 'lamp/brainstorm/' . $brainstorm->id) ?>" class="firstcomment" title="<?= dgettext("aladdin","Dazu weiter brainstormen") ?>">
                         <?= Icon::create("comment", "clickable")->asImg(16, array('class' => "text-bottom")) ?>
                     </a>
                 <? endif ?>
