@@ -1,4 +1,7 @@
 <article class='linked_brainstorm' id="brainstorm_<?= $brainstorm->id ?>">
+    <div style="float: right;">
+        <?= date("G:i d.m.Y", $brainstorm['mkdate']) ?>
+    </div>
     <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>">
         <h1><?= htmlReady($brainstorm->title) ?></h1>
         <div class="body">

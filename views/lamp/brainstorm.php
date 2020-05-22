@@ -13,6 +13,9 @@
 <? endif ?>
 <div class='brainstorm'>
     <div class="brainstorm_body">
+        <div style="float: right;">
+            <?= date("G:i d.m.Y", $brainstorm['mkdate']) ?>
+        </div>
         <? if ($brainstorm->title) : ?>
             <h1><?= htmlReady($brainstorm->title) ?></h1>
         <? endif ?>

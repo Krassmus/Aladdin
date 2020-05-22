@@ -23,11 +23,12 @@ class LampController extends PluginController {
             $this->parent = new Brainstorm($data['range_id']);
         }
 
-        if ($this->parent || !$GLOBALS['perm']->have_studip_perm("autor", Context::get()->id)) {
+        $this->brainstorm = new Brainstorm($brainstorm_id);
+
+        if (!$GLOBALS['perm']->have_studip_perm("tutor", Context::get()->id) || ($this->brainstorm['user_id'] !== $GLOBALS['user']->id)) {
             throw new Exception("No permission to post here");
         }
 
-        $this->brainstorm = new Brainstorm($brainstorm_id);
         $edit_mode = !$this->brainstorm->isNew();
         PageLayout::setTitle(
             dgettext(
