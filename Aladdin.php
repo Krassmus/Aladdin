@@ -83,4 +83,12 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
     public function getDisplayTitle() {
         return dgettext("aladdin","Aladdin");
     }
+    function getMetadata() {
+        $metadata = parent::getMetadata();
+        $metadata['pluginname'] = dgettext("aladdin", "Aladdin");
+        $metadata['displayname'] = dgettext("aladdin", "Aladdin");
+        $metadata['descriptionlong'] = dgettext("aladdin", "Mit Aladdin kann man Fragen stellen und schnell Antworten bekommen. Das Besondere ist, dass die Antworten auf- und abgewertet werden, sodass am Ende die sinnvollste Antwort oben steht. Man kann dieses Tool nutzen, um die Komilitonen zu Fragen, was man für die Klausur lernen sollte. Oder welche Maßnahmen bei der ersten Hilfe eine Rolle spielen. Oder man kann einfach fragen, bei welchem Pizzaservice zu einem Blockseminar bestellt werden soll.");
+        $metadata['summary'] = dgettext("aladdin", "Textbasiertes Brainstorming-Tool, das an reddit erinnert.");
+        return $metadata;
+    }
 }

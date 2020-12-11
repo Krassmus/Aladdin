@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-29 15:01+0200\n"
+"POT-Creation-Date: 2020-12-11 16:39+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,7 +26,7 @@ msgid ""
 "                Die Wunderlampe, wieder ein. "
 msgstr ""
 
-#: ../views/lamp/index.php:29 ../views/lamp/brainstorm.php:47
+#: ../views/lamp/index.php:29 ../views/lamp/brainstorm.php:48
 msgid "Jetzt brainstormen"
 msgstr ""
 
@@ -42,11 +42,11 @@ msgstr ""
 msgid "Zur Übersicht"
 msgstr ""
 
-#: ../views/lamp/brainstorm.php:33
+#: ../views/lamp/brainstorm.php:34
 msgid "Absenden"
 msgstr ""
 
-#: ../views/lamp/brainstorm.php:54
+#: ../views/lamp/brainstorm.php:55
 msgid "QR-Code anzeigen"
 msgstr ""
 
@@ -66,11 +66,15 @@ msgstr ""
 msgid "Um was soll's gehen?"
 msgstr ""
 
-#: ../views/lamp/edit.php:22
+#: ../views/lamp/edit.php:23
 msgid "Anlegen"
 msgstr ""
 
-#: ../views/lamp/_linked_brainstorm.php:9
+#: ../views/lamp/edit.php:25
+msgid "Speichern"
+msgstr ""
+
+#: ../views/lamp/_linked_brainstorm.php:20
 msgid "Wirklich löschen?"
 msgstr ""
 
@@ -90,13 +94,13 @@ msgstr ""
 msgid "Neuen Brainstorm starten"
 msgstr ""
 
-#: ../controllers/lamp.php:56 ../controllers/lamp.php:149
-#, php-format
-msgid "%s hat mit gebrainstormed"
+#: ../controllers/lamp.php:36
+msgid "Brainstorm bearbeiten"
 msgstr ""
 
-#: ../controllers/lamp.php:94
-msgid "Beitrag wurde gelöscht."
+#: ../controllers/lamp.php:68 ../controllers/lamp.php:165
+#, php-format
+msgid "%s hat mit gebrainstormed"
 msgstr ""
 
 #: ../Aladdin.php:74
@@ -104,6 +108,20 @@ msgstr ""
 msgid "%s neue Brainstorms verfügbar"
 msgstr ""
 
-#: ../Aladdin.php:84
+#: ../Aladdin.php:84 ../Aladdin.php:88 ../Aladdin.php:89
 msgid "Aladdin"
+msgstr ""
+
+#: ../Aladdin.php:90
+msgid ""
+"Mit Aladdin kann man Fragen stellen und schnell Antworten bekommen. Das "
+"Besondere ist, dass die Antworten auf- und abgewertet werden, sodass am Ende "
+"die sinnvollste Antwort oben steht. Man kann dieses Tool nutzen, um die "
+"Komilitonen zu Fragen, was man für die Klausur lernen sollte. Oder welche "
+"Maßnahmen bei der ersten Hilfe eine Rolle spielen. Oder man kann einfach "
+"fragen, bei welchem Pizzaservice zu einem Blockseminar bestellt werden soll."
+msgstr ""
+
+#: ../Aladdin.php:91
+msgid "Textbasiertes Brainstorming-Tool, das an reddit erinnert."
 msgstr ""
