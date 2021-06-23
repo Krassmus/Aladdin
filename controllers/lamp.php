@@ -11,7 +11,7 @@ class LampController extends PluginController {
 
     public function index_action() {
         Navigation::activateItem("/course/brainstorm");
-        $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL", array(Context::get()->id));
+        $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL ORDER BY title ASC ", array(Context::get()->id));
     }
 
     public function edit_action($brainstorm_id = null) {

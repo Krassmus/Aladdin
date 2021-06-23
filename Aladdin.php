@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__."/models/Brainstorm.php";
-require_once __DIR__."/models/BrainstormVote.php";
+require_once __DIR__ . "/models/Brainstorm.php";
+require_once __DIR__ . "/models/BrainstormVote.php";
 
 /**
  * BrainstormPlugin.class.php
@@ -13,7 +13,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
 
     public function __construct()
     {
-        bindtextdomain("aladdin", __DIR__."/locale");
+        bindtextdomain("aladdin", __DIR__ . "/locale");
         parent::__construct();
         if (UpdateInformation::isCollecting()) {
             $data = Request::getArray("page_info");
