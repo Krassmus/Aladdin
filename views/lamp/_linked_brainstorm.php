@@ -1,24 +1,45 @@
-<article class='linked_brainstorm' id="brainstorm_<?= $brainstorm->id ?>">
-    <div style="float: right;">
-        <?= date("G:i d.m.Y", $brainstorm['mkdate']) ?>
-    </div>
-    <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>">
-        <h1><?= htmlReady($brainstorm->title) ?></h1>
+<article class='linked_brainstorm studip<?= $brainstorm->start > time() ? ' inactive' : '' ?>'
+         id="brainstorm_<?= $brainstorm->id ?>">
+    <header>
+        <h1>
+            <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>">
+            <?= htmlReady($brainstorm->title) ?>
+            </a>
+        </h1>
+        <nav>
+            <? if ($brainstorm->start > 0 && $GLOBALS['perm']->have_studip_perm('tutor', $brainstorm['seminar_id'])) : ?>
+                <?= sprintf(dgettext("aladdin","(startet am %s Uhr)"), date("d.m.Y G:i", $brainstorm['start'])) ?>
+            <? endif ?>
+        </nav>
+    </header>
+    <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>" class="question">
+
         <div class="body">
             <?= formatReady($brainstorm->text) ?>
         </div>
     </a>
     <? if ($GLOBALS['perm']->have_studip_perm("tutor", Context::get()->id) || $GLOBALS['user']->id === $brainstorm['user_id']) : ?>
-        <a class="edit"
-           href="<?= PluginEngine::getLink(
-                 $plugin,
-                 [],
-                 "lamp/edit/" . $brainstorm->getId()
-                 ) ?>" data-dialog="size=auto;reload-on-close">
-            <?= Icon::create("edit", "clickable")->asImg(20) ?>
-        </a>
-        <a class="delete" href="<?= PluginEngine::getLink($plugin, array(), "lamp/delete/".$brainstorm->getId()) ?>" onClick="return window.confirm('<?= dgettext("aladdin","Wirklich löschen?") ?>');">
-            <?= Icon::create("trash", "clickable")->asImg(20) ?>
-        </a>
+        <div class="center">
+            <?= \Studip\LinkButton::create(
+                dgettext("aladdin","Bearbeiten"),
+                PluginEngine::getURL(
+                    $plugin,
+                    [],
+                    "lamp/edit/" . $brainstorm->getId()
+                ),
+                ['data-dialog' => "size=auto;reload-on-close"]
+            ) ?>
+            <?= \Studip\LinkButton::create(
+                dgettext("aladdin","Löschen"),
+                PluginEngine::getURL(
+                    $plugin,
+                    [],
+                    "lamp/delete/" . $brainstorm->getId()
+                ),
+                [
+                    'data-confirm' => dgettext("aladdin","Wirklich löschen?")
+                ]
+            ) ?>
+        </div>
     <? endif ?>
 </article>

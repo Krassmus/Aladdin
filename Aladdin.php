@@ -9,7 +9,7 @@ require_once __DIR__ . "/models/BrainstormVote.php";
  * @author  Florian Bieringer <florian.bieringer@uni-passau.de>
  * @version 1.0
  */
-class Aladdin extends StudIPPlugin implements StandardPlugin {
+class Aladdin extends StudIPPlugin implements StandardPlugin, SystemPlugin {
 
     public function __construct()
     {
@@ -20,6 +20,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
             if (stripos(Request::get("page"), "plugins.php/aladdin") !== false && isset($data['Aladdin'])) {
                 $brainstorm = new Brainstorm($data['Aladdin']['brainstorm_id']);
                 if ($GLOBALS['perm']->have_studip_perm("autor", $brainstorm['seminar_id'])) {
+
                     $newtime = $brainstorm['chdate'];
                     foreach ($brainstorm->children as $child) {
                         if ($child['chdate'] > $newtime) {
@@ -40,7 +41,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin {
                         $template->set_attribute("brainstorm", $brainstorm);
                         $output['html'] = $template->render();
                         $output['lasttime'] = $newtime;
-                        UpdateInformation::setInformation("Aladdin.updateSubbrainstorms", $output);
+                        UpdateInformation::setInformation("Aladdin", $output);
                     }
                 }
             }

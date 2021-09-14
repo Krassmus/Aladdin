@@ -69,7 +69,21 @@ STUDIP.Aladdin = {
     }
 };
 $(document).ready(function() {
+    if (jQuery(".subbrainstorms").length > 0) {
+        STUDIP.JSUpdater.register(
+            'Aladdin',
+            STUDIP.Aladdin.updateSubbrainstorms,
+            function () {
+                return {
+                    "brainstorm_id": jQuery(".subbrainstorms").data("brainstorm_id")
+                }
+            }
+        );
+    }
     $('div.brainstorm textarea').autoResize();
+    STUDIP.dialogReady(function () {
+        $('.aladdin-datetimepicker').datetimepicker();
+    });
 });
 
 jQuery(document).on("click", ".brainstorm form.voting input[type=image]", STUDIP.Aladdin.vote_brainstorm);

@@ -98,9 +98,13 @@
                 color: #000;
             }
         }
+        &.inactive {
+            header, .question {
+                opacity: 0.5;
+            }
+        }
     }
     .brainstorm_body {
-        background: url("@{icon-path}/black/arr_1right.png") no-repeat 10px 13px;
         border: thin solid @content-color-80;
         padding: 10px;
         padding-left: 30px;

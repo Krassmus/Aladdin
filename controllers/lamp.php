@@ -11,7 +11,11 @@ class LampController extends PluginController {
 
     public function index_action() {
         Navigation::activateItem("/course/brainstorm");
-        $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL ORDER BY title ASC ", array(Context::get()->id));
+        if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
+            $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL ORDER BY title ASC ", array(Context::get()->id));
+        } else {
+            $this->brainstorms = Brainstorm::findBySQL("seminar_id = ? AND range_id IS NULL AND (`start` IS NULL OR `start` < UNIX_TIMESTAMP()) ORDER BY title ASC ", array(Context::get()->id));
+        }
     }
 
     public function edit_action($brainstorm_id = null) {
@@ -47,6 +51,7 @@ class LampController extends PluginController {
             $data['user_id'] = User::findCurrent()->id;
             $data['range_id'] = $this->parent ? $this->parent->getId() : null;
             $data['seminar_id'] = $this->parent ? $this->parent['seminar_id'] : Context::get()->id;
+            $data['start'] = strtotime($data['start']) ?: null;
 
             $this->brainstorm->setData($data);
             $this->brainstorm->store();

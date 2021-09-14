@@ -15,6 +15,7 @@
                 <?= dgettext("aladdin",'Titel') ?>
                 <input type="text"
                        name="brainstorm[title]"
+                       required
                        value="<?= htmlReady($brainstorm['title']) ?>"
                        placeholder="<?= dgettext("aladdin","Frage oder Thema") ?>">
             </label>
@@ -23,6 +24,7 @@
         <label>
             <?= dgettext("aladdin",'Text') ?>
             <textarea name="brainstorm[text]"
+                      required
                       placeholder="<?= dgettext("aladdin","Um was soll's gehen?") ?>"><?= htmlReady($brainstorm['text']) ?></textarea>
         </label>
     </fieldset>
@@ -36,6 +38,7 @@
                 <?= _("Startet am") ?>
                 <input type="text"
                        name="brainstorm[start]"
+                       class="aladdin-datetimepicker"
                        value="<?= $brainstorm['start'] ? date("d.m.Y H:i", $brainstorm['start']) : "" ?>">
             </label>
         </div>
