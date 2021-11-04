@@ -1,6 +1,6 @@
 <? if ($brainstorm->parent) : ?>
     <a href="<?= PluginEngine::getLink($plugin, array(), "lamp/brainstorm/".$brainstorm->parent->getId()) ?>" class="parent_brainstorm">
-        <div class="title"><?= htmlReady($brainstorm->parent->title) ?></div>
+        <div class="title"><?= $brainstorm->parent->title ?></div>
         <div class="body">
             <?= formatReady($brainstorm->parent->text) ?>
         </div>
@@ -17,7 +17,7 @@
             <?= date("G:i d.m.Y", $brainstorm['mkdate']) ?>
         </div>
         <? if ($brainstorm->title) : ?>
-            <h1><?= htmlReady($brainstorm->title) ?></h1>
+            <h1><?= $brainstorm->title ?></h1>
         <? endif ?>
         <div class="body">
             <?= formatReady($brainstorm->text) ?>

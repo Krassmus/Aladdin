@@ -3,7 +3,7 @@
     <header>
         <h1>
             <a href="<?= $controller->url_for('lamp/brainstorm/' . $brainstorm->id) ?>">
-            <?= htmlReady($brainstorm->title) ?>
+            <?= $brainstorm->title ?>
             </a>
         </h1>
         <nav>

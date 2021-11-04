@@ -45,7 +45,7 @@ class LampController extends PluginController {
             throw new AccessDeniedException();
         }
 
-        if (Request::isPost() && Request::submitted('create')) {
+        if (Request::submitted('create')) {
             CSRFProtection::verifySecurityToken();
 
             $data['user_id'] = User::findCurrent()->id;
@@ -92,14 +92,12 @@ class LampController extends PluginController {
         $this->brainstorm = new Brainstorm($id);
 
         // Insert new subbrainstorm
-        if (Request::isPost() && Request::submitted('create')) {
-            CSRFProtection::verifySecurityToken();
+        if (Request::submitted('create')) {
             $this->brainstorm->answer(Request::get('answer'));
         }
 
         // Check if vote is required
-        if (Request::isPost() && Request::submitted('vote')) {
-            CSRFProtection::verifySecurityToken();
+        if (Request::submitted('vote')) {
             $brainstorm = new Brainstorm(Request::get('brainstorm_id'));
             $brainstorm->vote(key(Request::getArray('vote')));
         }

@@ -16,7 +16,7 @@
                 <input type="text"
                        name="brainstorm[title]"
                        required
-                       value="<?= htmlReady($brainstorm['title']) ?>"
+                       value="<?= $brainstorm['title'] ?>"
                        placeholder="<?= dgettext("aladdin","Frage oder Thema") ?>">
             </label>
         <? endif ?>
@@ -25,7 +25,7 @@
             <?= dgettext("aladdin",'Text') ?>
             <textarea name="brainstorm[text]"
                       required
-                      placeholder="<?= dgettext("aladdin","Um was soll's gehen?") ?>"><?= htmlReady($brainstorm['text']) ?></textarea>
+                      placeholder="<?= dgettext("aladdin","Um was soll's gehen?") ?>"><?= $brainstorm['text'] ?></textarea>
         </label>
     </fieldset>
 

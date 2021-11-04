@@ -10,7 +10,7 @@
             </form>
         </nav>
         <? if ($brainstorm->title) : ?>
-            <h1><?= htmlReady($brainstorm->title) ?></h1>
+            <h1><?= $brainstorm->title ?></h1>
         <? endif ?>
         <div class='power'>
             <?= $brainstorm->power ?>
