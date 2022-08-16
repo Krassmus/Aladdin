@@ -39,8 +39,6 @@
 <?
 $sidebar = Sidebar::Get();
 
-$sidebar->setImage($this->plugin->getPluginURL()."/assets/images/sidebar-lightning.png");
-
 // Create actions
 $actions = new ActionsWidget();
 if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {

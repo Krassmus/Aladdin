@@ -29,7 +29,7 @@ class LampController extends PluginController {
 
         $this->brainstorm = new Brainstorm($brainstorm_id);
 
-        if (!$GLOBALS['perm']->have_studip_perm("tutor", Context::get()->id) || (!$this->brainstorm->isNew() && $this->brainstorm['user_id'] !== $GLOBALS['user']->id)) {
+        if (!$GLOBALS['perm']->have_studip_perm("tutor", Context::get()->id) && !$this->brainstorm->isNew() && ($this->brainstorm['user_id'] !== $GLOBALS['user']->id)) {
             throw new Exception("No permission to post here");
         }
 
