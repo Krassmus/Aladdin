@@ -1,7 +1,7 @@
 pluginname=Aladdin
 pluginclassname=Aladdin
 origin=intelec
-version=2.4.1
+version=2.4.2
 studipMinVersion=4.6
 studipMaxVersion=5.2.99
 dbscheme=install.sql

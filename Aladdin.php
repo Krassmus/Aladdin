@@ -70,7 +70,11 @@ class Aladdin extends StudIPPlugin implements StandardPlugin, SystemPlugin {
     public function getIconNavigation($course_id, $last_visit, $user_id) {
         $new = Brainstorm::countBySQL("seminar_id = ? AND chdate > ? AND user_id != ?", array($course_id, $last_visit, $GLOBALS['user']->id));
         $icon = new Navigation($this->getDisplayTitle(), PluginEngine::GetURL($this, array('cid' => $course_id), 'lamp/index'));
-        $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle())));
+        If (StudipVersion::newerThan('4.9')) {
+            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_blue.svg', array('title' => $this->getDisplayTitle())));
+        } else {
+            $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_grey.svg', array('title' => $this->getDisplayTitle())));
+        }
         if ($new) {
             $icon->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_red.svg', array('title' => sprintf(dgettext("aladdin","%s neue Brainstorms verfügbar"), $new))));
         }
