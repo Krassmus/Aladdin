@@ -36,6 +36,13 @@ class Brainstorm extends SimpleORMap {
         parent::configure($config);
     }
 
+    public static function findByRange_id($range_id)
+    {
+        return static::findBySQL('LEFT JOIN `brainstorm_votes` USING (`brainstorm_id`) WHERE `range_id` = ? GROUP BY `brainstorms`.`brainstorm_id` ORDER BY IFNULL(SUM(`brainstorm_votes`.`vote`), 0) DESC', [
+            $range_id
+        ]);
+    }
+
     public static function getTypes() {
         return array(
             'simple' => dgettext("aladdin",'Standard'),
