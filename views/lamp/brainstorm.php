@@ -56,5 +56,11 @@ if ($GLOBALS['perm']->have_studip_perm('tutor', Context::get()->id)) {
         array('data-qr-code' => "1")
     );
     URLHelper::setBaseURL($oldbase);
+    $actions->addLink(
+        dgettext("aladdin",'Exportieren'),
+        PluginEngine::GetURL($plugin, array(), 'lamp/export/'. $brainstorm->getId()),
+        Icon::create('export', "clickable"),
+        ['download' => ($brainstorm['title'] ?: "Aladdin-".$brainstorm->getId()).".csv"]
+    );
 }
 $sidebar->addWidget($actions);

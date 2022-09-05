@@ -179,4 +179,38 @@ class LampController extends PluginController {
         $this->render_json($output);
     }
 
+    public function export_action($brainstorm_id)
+    {
+        $this->brainstorm = new Brainstorm($brainstorm_id);
+        if (!$GLOBALS['perm']->have_studip_perm("tutor", $this->brainstorm['seminar_id'])) {
+            throw new Exception("No rights to vote.");
+        }
+        $data = [
+            [
+                'Title',
+                'Type',
+                'Text',
+                'Ranking'
+            ],
+            [
+                $this->brainstorm['title'],
+                'Topic',
+                $this->brainstorm['text'],
+                $this->brainstorm->getPower()
+            ]
+        ];
+        foreach ($this->brainstorm->children as $comment) {
+            $data[] = [
+                $comment['title'],
+                'Comment',
+                $comment['text'],
+                $comment->getPower()
+            ];
+        }
+        $this->render_csv(
+            $data,
+            ($this->brainstorm['title'] ?: "Aladdin-".$this->brainstorm->getId()).".csv"
+        );
+    }
+
 }

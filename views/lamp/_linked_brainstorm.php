@@ -30,6 +30,15 @@
                 ['data-dialog' => "size=auto;reload-on-close"]
             ) ?>
             <?= \Studip\LinkButton::create(
+                dgettext("aladdin","Exportieren"),
+                PluginEngine::getURL(
+                    $plugin,
+                    [],
+                    "lamp/export/" . $brainstorm->getId()
+                ),
+                ['download' => ($brainstorm['title'] ?: "Aladdin-".$brainstorm->getId()).".csv"]
+            ) ?>
+            <?= \Studip\LinkButton::create(
                 dgettext("aladdin","Löschen"),
                 PluginEngine::getURL(
                     $plugin,
