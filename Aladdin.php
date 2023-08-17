@@ -49,7 +49,7 @@ class Aladdin extends StudIPPlugin implements StandardPlugin, SystemPlugin {
     }
 
     public function initialize() {
-        self::addStylesheet('/assets/style.less');
+        self::addStylesheet('/assets/style.scss');
         PageLayout::addScript($this->getPluginURL() . '/assets/autoresize.jquery.min.js');
         PageLayout::addScript($this->getPluginURL() . '/assets/application.js');
     }

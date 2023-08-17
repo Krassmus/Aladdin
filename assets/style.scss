@@ -1,0 +1,128 @@
+.brainstorm {
+    textarea {
+        resize: none;
+        transition: none;
+        width: 50%;
+        height: 24px;
+    }
+    padding: 10px;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-bottom: 10px;
+    max-width: 100vw;
+    overflow: hidden;
+    .comments {
+        margin-top: 7px;
+        margin-left: 5px;
+        font-size: 0.8em;
+        .firstcomment {
+            opacity: 0.5;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    article {
+        border: 1px solid $content-color-40;
+        &.vote_brainstorm {
+            padding: 0px;
+
+            section.main {
+                display: table-row;
+
+                h1:empty {
+                    display: none;
+                }
+                nav {
+                    display: table-cell;
+                    background-color: $content-color-40;
+                    width: 20px;
+                    padding: 4px;
+                    text-align: center;
+                    vertical-align: middle;
+                    input {
+                        display: block;
+                    }
+                }
+                .body {
+                    display: table-cell;
+                    padding: 10px;
+                    vertical-align: middle;
+                    width: 100%;
+                    .actions {
+                        float: right;
+                    }
+                }
+                .power {
+                    display: table-cell;
+                    min-width: 16px;
+                    width: 16px;
+                    padding: 4px;
+                    text-align: center;
+                    vertical-align: middle;
+                    border-right: 1px solid $content-color-40;
+                }
+            }
+            footer {
+                border-top: 1px solid $content-color-40;
+                & > form {
+                    display: none;
+                }
+                label {
+                    padding: 2px;
+                    color: $base-color;
+                    &:hover {
+                        color: $active-color;
+                    }
+                }
+                input[type='checkbox'] {
+                    display: none;
+                }
+                input[type='checkbox']:checked + form {
+                    display: inherit;
+                }
+            }
+        }
+        &.linked_brainstorm {
+            margin-bottom: 10px;
+            padding: 10px;
+            color: #000;
+            margin-left: auto;
+            margin-right: auto;
+            div.type {
+                font-size: 0.8em;
+                color: $content-color;
+            }
+            &:hover {
+                border-color: $base-color;
+                color: #000;
+            }
+        }
+        &.inactive {
+            header, .question {
+                opacity: 0.5;
+            }
+        }
+    }
+    .brainstorm_body {
+        border: thin solid $content-color-80;
+        padding: 10px;
+        padding-left: 30px;
+    }
+
+    .subbrainstorms {
+        margin-top: 10px;
+    }
+}
+
+.parent_brainstorm {
+    display: block;
+    padding: 10px;
+    padding-left: 30px;
+    font-size: 0.8em;
+    border: thin solid $content-color-20;
+    background: url("#{$icon-path}/blue/arr_1up.svg") no-repeat 10px 10px;
+    .title {
+        font-weight: bold;
+    }
+}
