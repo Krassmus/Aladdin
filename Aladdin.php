@@ -57,9 +57,6 @@ class Aladdin extends StudIPPlugin implements StandardPlugin, SystemPlugin {
     public function getTabNavigation($course_id) {
         $navigation = new AutoNavigation($this->getDisplayTitle());
         $navigation->setURL(PluginEngine::GetURL($this, array(), 'lamp/index'));
-        $navigation->setActiveImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_black.svg'));
-        $navigation->setImage(Icon::create($this->getPluginURL() . '/assets/images/lightning_white.svg'));
-
         return array('brainstorm' => $navigation);
     }
 

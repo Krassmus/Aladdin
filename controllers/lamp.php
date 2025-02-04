@@ -23,7 +23,7 @@ class LampController extends PluginController {
         PageLayout::setTitle(dgettext("aladdin","Neuen Brainstorm starten"));
 
         $data = Request::getArray('brainstorm');
-        if ($data['range_id']) {
+        if (empty($data['range_id'])) {
             $this->parent = new Brainstorm($data['range_id']);
         }
 
