@@ -4,7 +4,7 @@
 
     <?= CSRFProtection::tokenTag() ?>
 
-    <input type="hidden" name="brainstorm[range_id]" value="<?= $range_id ?: $brainstorm['range_id'] ?>">
+    <input type="hidden" name="brainstorm[range_id]" value="<?= isset($range_id) ? $range_id : $brainstorm['range_id'] ?>">
 
     <fieldset>
         <legend>
